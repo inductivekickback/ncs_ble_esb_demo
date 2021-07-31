@@ -49,7 +49,8 @@ enum SIGNAL_CODE
     SIGNAL_CODE_OVERSTAYED        = 0x04,
     SIGNAL_CODE_IDLE              = 0x05,
     SIGNAL_CODE_RNH_ACTIVE        = 0x06,
-    SIGNAL_CODE_UNEXPECTED        = 0x07
+    SIGNAL_CODE_UNEXPECTED        = 0x07,
+    SIGNAL_CODE_MPSL_START        = 0x08
 };
 
 static uint32_t                ts_len_us;
@@ -265,27 +266,16 @@ int timeslot_open(struct timeslot_config *p_config, struct timeslot_cb *p_cb)
 #endif
 
     LOG_INF("timeslot_open(...)");
-    int err = mpsl_radio_notification_cfg_set(MPSL_RADIO_NOTIFICATION_TYPE_INT_ON_ACTIVE,
-                                                MPSL_RADIO_NOTIFICATION_DISTANCE_800US,
-                                                TIMESLOT_IRQN);
-    if (err) {
-        return err;
-    }
-
     IRQ_CONNECT(DT_IRQN(DT_NODELABEL(TIMESLOT_IRQ_NODELABEL)), TIMESLOT_IRQ_PRIO,
                 radio_notify_cb, NULL, 0);
     irq_enable(DT_IRQN(DT_NODELABEL(TIMESLOT_IRQ_NODELABEL)));
 
     p_timeslot_config    = p_config;
     p_timeslot_callbacks = p_cb;
+    session_open         = true;
 
     request_earliest.params.earliest.hfclk      = p_timeslot_config->hfclk;
     request_earliest.params.earliest.timeout_us = p_timeslot_config->timeout_us;
-
-    err = mpsl_timeslot_session_open(mpsl_cb, &mpsl_session_id);
-    if (err) {
-        return err;
-    }
 
 #if TS_GPIO_DEBUG
     nrf_gpio_cfg_output(TIMESLOT_OPEN_PIN);
@@ -300,7 +290,7 @@ int timeslot_open(struct timeslot_config *p_config, struct timeslot_cb *p_cb)
     nrf_gpio_pin_clear(REQUEST_PIN);
 #endif
 
-    session_open = true;
+    k_poll_signal_raise(&timeslot_sig, SIGNAL_CODE_MPSL_START);
     return 0;
 }
 
@@ -386,6 +376,20 @@ static void timeslot_thread_fn(void)
 #endif
             timeslot_requested = true;
             err = mpsl_timeslot_request(mpsl_session_id, &request_earliest);
+            if (err) {
+                p_timeslot_callbacks->error(err);
+            }
+            break;
+
+        case SIGNAL_CODE_MPSL_START:
+            err = mpsl_radio_notification_cfg_set(MPSL_RADIO_NOTIFICATION_TYPE_INT_ON_ACTIVE,
+                                                    MPSL_RADIO_NOTIFICATION_DISTANCE_800US,
+                                                    TIMESLOT_IRQN);
+            if (err) {
+                p_timeslot_callbacks->error(err);
+            }
+
+            err = mpsl_timeslot_session_open(mpsl_cb, &mpsl_session_id);
             if (err) {
                 p_timeslot_callbacks->error(err);
             }

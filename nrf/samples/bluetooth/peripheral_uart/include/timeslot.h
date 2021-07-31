@@ -82,7 +82,7 @@ struct timeslot_config {
 struct timeslot_cb {
     /**
      * A (potentially unrecoverable) error has occurred. The err param will be set to a
-     * TIMESLOT_ERROR or an error returned by mpsl_timeslot_request.
+     * TIMESLOT_ERROR or an error returned by an MPSL API call.
      */
     void (*error)(int err);
     /**
