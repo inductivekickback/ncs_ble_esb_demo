@@ -9,6 +9,6 @@ This project demonstrates a straightforward approach to integrating the [Enhance
   * no additional RTCs or timers
 * Requires minimal modification to the ESB library
   * RADIO_IRQHandler does not need to be added to the vector table (this is done by the SoftDevice Controller)
-  * two simple functions allow saving and restoring a PIPE's pid so it can persist when the library is disabled and reinitialzed
+  * two simple functions allow saving and restoring a pipe's PID so it can persist when the library is disabled and reinitialzed
 * BLE connectivity can be tested using nRF Connect for Mobile ([Android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp&hl=en_US&gl=US), [iOS](https://apps.apple.com/us/app/nrf-connect-for-mobile/id1054362403))
 * ESB works with the (unmodified) Enhanced ShockBurst Receiver sample in NCS
