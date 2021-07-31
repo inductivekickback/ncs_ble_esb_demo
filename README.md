@@ -5,7 +5,10 @@ This project demonstrates a straightforward approach to integrating the [Enhance
 * Uses the [MPSL radio notifications](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/doc/radio_notification.html) feature to synchronize timeslots to BLE Connection Events
 * Optimized SoC peripheral use
   * a single hardware interrupt vector is used for both radio notifications and timeslot callbacks
-  * a single thread executes application callbacks in a safe manner
+  * a single (cooperative) thread
+    * minimizes processing in ISRs
+    * executes application callbacks in a safe manner
+    * protects MPSL API calls from being reentered
   * no additional RTCs or timers
 * Requires minimal modification to the ESB library
   * RADIO_IRQHandler does not need to be added to the vector table (this is done by the SoftDevice Controller)
