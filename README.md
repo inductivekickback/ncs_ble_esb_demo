@@ -1,6 +1,6 @@
 This project demonstrates a straightforward approach to integrating the [Enhanced ShockBurst (ESB) Transmitter sample](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/samples/esb/README.html) into the [Bluetooth Peripheral UART sample](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/samples/bluetooth/peripheral_uart/README.html) so the two protocols can run concurrently. It was built from the v1.6.0 tag of [nRF Connect SDK (NCS)](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/index.html).
 
-<p align="center"><img src="https://user-images.githubusercontent.com/6494431/127732489-169cc064-d8c6-454d-95e9-80625da02eed.gif" width="1024"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/6494431/127733643-084f0694-cbba-405c-8e93-ffa147135ae9.gif" width="1024"></p>
 
 ##### Features
 * Wraps the [MPSL timeslot](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/doc/timeslot.html) feature to provide a simple interface
