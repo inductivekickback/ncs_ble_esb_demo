@@ -179,21 +179,6 @@ static void timeslot_err_cb(int err)
     LOG_ERR("Timeslot session error: %d", err);
 }
 
-static void timeslot_start_cb(void)
-{
-    proprietary_rf_start();
-}
-
-static void timeslot_end_cb(void)
-{
-    proprietary_rf_end();
-}
-
-static void timeslot_skipped_cb(uint8_t count)
-{
-    proprietary_rf_skipped(count);
-}
-
 static void timeslot_stopped_cb(void)
 {
     LOG_INF("Timeslot stopped");
@@ -209,9 +194,9 @@ static void radio_irq_cb(void)
 
 static struct timeslot_cb timeslot_callbacks = {
     .error     = timeslot_err_cb,
-    .start     = timeslot_start_cb,
-    .end       = timeslot_end_cb,
-    .skipped   = timeslot_skipped_cb,
+    .start     = proprietary_rf_start,
+    .end       = proprietary_rf_end,
+    .skipped   = proprietary_rf_skipped,
     .stopped   = timeslot_stopped_cb,
 #if !TIMESLOT_CALLS_RADIO_IRQHANDLER
     .radio_irq = radio_irq_cb
