@@ -16,4 +16,4 @@ This project was built from the v1.6.0 tag of [nRF Connect SDK (NCS)](https://de
   * don't add RADIO_IRQHandler to the vector table (this is already done by the SoftDevice Controller)
   * two (optional) functions allow saving and restoring a pipe's PID so it can persist when the library is disabled and reinitialzed
 * BLE connectivity can be tested using nRF Connect for Mobile ([Android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp&hl=en_US&gl=US), [iOS](https://apps.apple.com/us/app/nrf-connect-for-mobile/id1054362403))
-* ESB works with the (unmodified) Enhanced ShockBurst Receiver sample in NCS
+* [ESB](https://devzone.nordicsemi.com/nordic/nordic-blog/b/blog/posts/intro-to-shockburstenhanced-shockburst) works with the (unmodified) Enhanced ShockBurst Receiver sample in NCS
