@@ -1,9 +1,9 @@
 This project was built from the v1.6.0 tag of [nRF Connect SDK (NCS)](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/index.html) and demonstrates a reasonable approach to integrating the [Enhanced ShockBurst (ESB) Transmitter sample](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/samples/esb/README.html) into the [Bluetooth Peripheral UART sample](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/samples/bluetooth/peripheral_uart/README.html) so the two protocols can run concurrently.
 
-From the BLE connection's perspective:
+The BLE connection looks like this:
 <p align="center"><img src="https://user-images.githubusercontent.com/6494431/127812915-d1d09291-e4d5-47c2-bcce-922ccc5651a2.gif" width="1024"></p>
 
-From the timeslot's perspective:
+And the timeslots fits in to the schedule like this:
 <p align="center"><img src="https://user-images.githubusercontent.com/6494431/127733643-084f0694-cbba-405c-8e93-ffa147135ae9.gif" width="1024"></p>
 
 ##### Features
