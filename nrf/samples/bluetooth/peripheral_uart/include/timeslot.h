@@ -118,6 +118,8 @@ struct timeslot_cb {
  * 
  * @note Opening a session is always the first step and closing a session is not implemented
  *       because there's no obvious reason to ever do it.
+ *
+ * @note This function should be called before Bluetooth is enabled.
  * 
  * @param[in] p_config      Pointer to a timeslot_config (should be static/global)
  * @param[in] p_cb          Pointer to a timeslot_cb (should be static/global)
@@ -128,7 +130,7 @@ struct timeslot_cb {
  */
 int timeslot_open(struct timeslot_config *p_config, struct timeslot_cb *p_cb);
 
-/** @brief Request a recurring timeslot of len_us based on the given interval
+/** @brief Request a recurring timeslot of len_us
  * 
  * @param[in] len_us      Usable length will be minus safety_margin_us
  * 
