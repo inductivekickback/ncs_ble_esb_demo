@@ -14,7 +14,7 @@ extern "C" {
 #include <mpsl_timeslot.h>
 
 /**
- * A hardware interrupt vector to use with the Radio Notification feature as well as lowering the
+ * An interrupt vector to use with the Radio Notification feature as well as lowering the
  * priority of the MPSL callback (Zero Latency IRQ workaround). As of NCS v1.6 this doesn't
  * handle MPSL_TIMESLOT_SIGNAL_TIMER0 signals correctly unless it uses priority MPSL_LOW_PRIO
  * or higher.
