@@ -105,7 +105,7 @@ struct timeslot_cb {
 
 #if !TIMESLOT_USE_RADIO_IRQHANDLER
     /**
-     * Some like e.g. the ESB library defines its own RADIO_IRQHandler function. Setting
+     * Some code e.g. the ESB library defines its own RADIO_IRQHandler function. Setting
      * TIMESLOT_USE_RADIO_IRQHANDLER causes MPSL_TIMESLOT_SIGNAL_RADIO signals to call
      * RADIO_IRQHandler directly. Otherwise, this callback will be used whenever RADIO_IRQHandler
      * is called.
