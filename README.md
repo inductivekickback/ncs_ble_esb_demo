@@ -11,7 +11,7 @@ And the timeslots fit in to the schedule like this:
   * Provides fixed-length timeslots at a consistent interval
 * Uses the [MPSL radio notifications](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrfxlib/mpsl/doc/radio_notification.html) feature to synchronize timeslots to BLE Connection Events
 * Optimized SoC peripheral use
-  * a single hardware interrupt vector is used for both radio notifications and timeslot callbacks
+  * a single interrupt vector is used for both radio notifications and timeslot callbacks
   * a single (cooperative) thread
     * minimizes processing in ISRs
     * executes application callbacks in a safe manner
